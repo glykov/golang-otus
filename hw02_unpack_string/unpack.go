@@ -10,13 +10,14 @@ import (
 var ErrInvalidString = errors.New("invalid string")
 
 func Unpack(str string) (string, error) {
+	if len(str) == 0 {
+		return "", nil
+	}
+
 	chars := []rune(str)
 	var i, j int
 	var result strings.Builder
 
-	if len(chars) == 0 {
-		return "", nil
-	}
 	if unicode.IsDigit(chars[0]) {
 		return "", ErrInvalidString
 	}
